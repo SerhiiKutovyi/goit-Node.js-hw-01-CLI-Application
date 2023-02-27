@@ -1,0 +1,24 @@
+{
+  "name": "goit-node.js-hw-01-cli-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "start:dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SerhiiKutovyi/goit-Node.js-hw-01-CLI-Application.git"
+  },
+  "author": "Serhii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SerhiiKutovyi/goit-Node.js-hw-01-CLI-Application/issues"
+  },
+  "homepage": "https://github.com/SerhiiKutovyi/goit-Node.js-hw-01-CLI-Application#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
