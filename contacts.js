@@ -1,9 +1,11 @@
 const fs = require('node:fs/promises');
 const path = require('node:path');
-
 const { v4: uuidv4 } = require('uuid');
 
 const contactsPath = path.join(__dirname, './db/contacts.json');
+
+const updateContacts = contacts =>
+  fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
 
 // TODO: задокументировать каждую функцию
 
@@ -27,7 +29,7 @@ async function addContact({ name, email, phone }) {
     id: uuidv4(),
   };
   contacts.push(newContact);
-  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+  await updateContacts(contacts);
   return newContact;
 }
 
@@ -38,7 +40,7 @@ async function removeContact(id) {
     return null;
   }
   const [result] = contacts.splice(removeContact, 1);
-  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+  await updateContacts(contacts);
   return result;
 }
 
