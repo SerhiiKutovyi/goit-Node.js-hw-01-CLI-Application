@@ -13,7 +13,7 @@ async function getAction({ action, id, name, email, phone }) {
       break;
 
     case 'add':
-      const addNewContact = await contacts.addContact(name, email, phone);
+      const addNewContact = await contacts.addContact({ name, email, phone });
       console.log(addNewContact);
       break;
 
@@ -27,4 +27,9 @@ async function getAction({ action, id, name, email, phone }) {
 
 // getAction({ action: 'list' });
 // getAction({ action: 'get', id: '1' });
-getAction({ action: 'add', id: '', name: '', email: '', phone: '' });
+getAction({
+  action: 'add',
+  name: 'Serhii',
+  email: 'test@test.com',
+  phone: '(123) 456-7890',
+});

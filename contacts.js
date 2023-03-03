@@ -18,7 +18,7 @@ async function getContactById(id) {
   return contactId || null;
 }
 
-async function addContact(name, email, phone) {
+async function addContact({ name, email, phone }) {
   const contact = await listContacts();
   const newContact = {
     name,
@@ -26,6 +26,9 @@ async function addContact(name, email, phone) {
     phone,
     id: uuidv4(),
   };
+  contact.push(newContact);
+  await fs.writeFile(contactsPath, JSON.stringify(contact, null, 2));
+  return newContact;
 }
 
 function removeContact(id) {
@@ -35,4 +38,5 @@ function removeContact(id) {
 module.exports = {
   listContacts,
   getContactById,
+  addContact,
 };
