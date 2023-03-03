@@ -18,18 +18,21 @@ async function getAction({ action, id, name, email, phone }) {
       break;
 
     case 'remove':
+      const removeContact = await contacts.removeContact(id);
+      console.log(removeContact);
       break;
 
     default:
-      break;
+      console.log('Unknown action');
   }
 }
 
 // getAction({ action: 'list' });
 // getAction({ action: 'get', id: '1' });
-getAction({
-  action: 'add',
-  name: 'Serhii',
-  email: 'test@test.com',
-  phone: '(123) 456-7890',
-});
+// getAction({
+//   action: 'add',
+//   name: 'Serhii',
+//   email: 'test@test.com',
+//   phone: '(123) 456-7890',
+// });
+getAction({ action: 'remove', id: 'cfa4cbd8-e83b-4a0f-9ad5-44faa314051b' });

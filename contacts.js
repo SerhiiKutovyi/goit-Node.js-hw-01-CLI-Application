@@ -13,30 +13,38 @@ async function listContacts() {
 }
 
 async function getContactById(id) {
-  const contact = await listContacts();
-  const contactId = contact.find(ele => ele.id === id);
+  const contacts = await listContacts();
+  const contactId = contacts.find(ele => ele.id === id);
   return contactId || null;
 }
 
 async function addContact({ name, email, phone }) {
-  const contact = await listContacts();
+  const contacts = await listContacts();
   const newContact = {
     name,
     email,
     phone,
     id: uuidv4(),
   };
-  contact.push(newContact);
-  await fs.writeFile(contactsPath, JSON.stringify(contact, null, 2));
+  contacts.push(newContact);
+  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
   return newContact;
 }
 
-function removeContact(id) {
-  console.log();
+async function removeContact(id) {
+  const contacts = await listContacts();
+  const removeContact = contacts.findIndex(ele => ele.id === id);
+  if (removeContact === -1) {
+    return null;
+  }
+  const [result] = contacts.splice(removeContact, 1);
+  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+  return result;
 }
 
 module.exports = {
   listContacts,
   getContactById,
   addContact,
+  removeContact,
 };
