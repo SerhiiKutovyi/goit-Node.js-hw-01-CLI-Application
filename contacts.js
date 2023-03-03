@@ -1,27 +1,38 @@
 const fs = require('node:fs/promises');
 const path = require('node:path');
 
+const { v4: uuidv4 } = require('uuid');
+
 const contactsPath = path.join(__dirname, './db/contacts.json');
 
 // TODO: задокументировать каждую функцию
 
 async function listContacts() {
   const list = await fs.readFile(contactsPath, 'utf8');
-  return list;
+  return JSON.parse(list);
 }
 
-function getContactById(contactId) {
-  console.log();
+async function getContactById(id) {
+  const contact = await listContacts();
+  const contactId = contact.find(ele => ele.id === id);
+  return contactId || null;
 }
 
-function removeContact(contactId) {
-  console.log();
+async function addContact(name, email, phone) {
+  const contact = await listContacts();
+  const newContact = {
+    name,
+    email,
+    phone,
+    id: uuidv4(),
+  };
 }
 
-function addContact(name, email, phone) {
+function removeContact(id) {
   console.log();
 }
 
 module.exports = {
   listContacts,
+  getContactById,
 };

@@ -20,5 +20,8 @@
   "homepage": "https://github.com/SerhiiKutovyi/goit-Node.js-hw-01-CLI-Application#readme",
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
   }
 }
