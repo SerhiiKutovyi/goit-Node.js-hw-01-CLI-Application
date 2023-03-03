@@ -1,4 +1,9 @@
+const { program } = require('commander');
+const program = new Command();
+
 const contacts = require('./contacts');
+
+// TODO рефакторить
 
 async function getAction({ action, id, name, email, phone }) {
   switch (action) {
@@ -27,12 +32,16 @@ async function getAction({ action, id, name, email, phone }) {
   }
 }
 
-// getAction({ action: 'list' });
-// getAction({ action: 'get', id: '1' });
-// getAction({
-//   action: 'add',
-//   name: 'Serhii',
-//   email: 'test@test.com',
-//   phone: '(123) 456-7890',
-// });
-getAction({ action: 'remove', id: 'cfa4cbd8-e83b-4a0f-9ad5-44faa314051b' });
+getAction(argv);
+
+program
+  .option('-a,--action <type>')
+  .option('-i,--id <type>')
+  .option('-n,--name <type>')
+  .option('-e,--email <type>')
+  .option('-p,--phone <type>');
+
+program.parse(process.argv);
+
+const argv = program.opts();
+console.log(argv);
